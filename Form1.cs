@@ -15,6 +15,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace f2c
 {
@@ -23,10 +24,27 @@ namespace f2c
         public Form1()
         {
             InitializeComponent();
-
+            FahrenheitTextBox.KeyDown += F2cButton_KeyDown;
+            CelsiusTextBox.KeyDown += C2fButton_KeyDown;
         }
 
         /** Custom Code **/
+
+        /** Allows Form to be used with Enter Key **/
+        private void F2cButton_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)  // catches enter key if pressed
+            {
+                ConvertTemp2c(); // calls Fahrenheit conversion to Celsius Code
+            }
+        } // end F2cButton_KeyDown
+        private void C2fButton_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) // catches enter key if pressed
+            {
+                ConvertTemp2f(); // calls Celsius conversion to Fahrenheit code
+            }
+        } // end C2fButton_KeyDown
 
 
         //Convert Fahrenheit Temp to Celsius
@@ -44,7 +62,7 @@ namespace f2c
             string convertedTemp = Convert.ToString(doubleTemp); // converts double back to a string
             this.ConvertedTemp.Text = convertedTemp + "C"; // Outputs converted temp to converted temp box and adds C for Celsius to the String
             this.ConvertedTemp.ForeColor = Color.DarkBlue; // Changes color to Blue to represent Celsius
-        }
+        } // end ConvertTemp2c
         // Convert Celsius Temp to Fahrenheit
         private void ConvertTemp2f()
         {
@@ -60,7 +78,7 @@ namespace f2c
             string convertedTemp = Convert.ToString(doubleTemp);  // converts double back to a string
             this.ConvertedTemp.Text = convertedTemp + "F"; // outputs converted temperature to converted temp box and adds F for Fahrenheit to the string
             this.ConvertedTemp.ForeColor = Color.DarkRed; // Changes color to Red to represent Fahrenheit
-        }
+        } // end ConvertTemp2f
         /** Auto Generated **/
         private void label2_Click(object sender, EventArgs e)
         {
@@ -86,5 +104,5 @@ namespace f2c
         {
 
         }
-    }
-}
+    } // end partial class for form 1
+} // end namespace f2c
