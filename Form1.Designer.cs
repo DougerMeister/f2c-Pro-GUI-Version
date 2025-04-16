@@ -95,6 +95,8 @@ namespace f2c
             this.FahrenheitTextBox.Name = "FahrenheitTextBox";
             this.FahrenheitTextBox.Size = new System.Drawing.Size(100, 20);
             this.FahrenheitTextBox.TabIndex = 5;
+            this.FahrenheitTextBox.Text = "0";
+            this.FahrenheitTextBox.TextChanged += new System.EventHandler(this.FahrenheitTextBox_TextChanged);
             // 
             // CelsiusTextBox
             // 
@@ -102,6 +104,7 @@ namespace f2c
             this.CelsiusTextBox.Name = "CelsiusTextBox";
             this.CelsiusTextBox.Size = new System.Drawing.Size(100, 20);
             this.CelsiusTextBox.TabIndex = 6;
+            this.CelsiusTextBox.Text = "0";
             // 
             // ConvertedTemp
             // 

@@ -1,9 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿/***  f2p(ProGui) Program to convert Fahrenheit to Celsius, or Celsius to Fahrenheit with a graphical user interface.
+ *    Written by: DougerMeister
+ *    April 16th, 2025
+ *    version 1.0
+ *    
+ *    What: Converts Fahrenheit to Celsius or Celsius to Fahrenheit
+ *    
+ *    Why: Sometimes you need to convert Celsius to Fahrenheit or Fahrenheit to Celsius.
+ *    
+ *    How: Takes Numerical value from associated text box and converts it to Fahrenheit or Celsius
+ *         then outputs it to a box and changes the color, accordingly.
+ *    
+***/
+
+using System;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace f2c
@@ -17,27 +27,41 @@ namespace f2c
         }
 
         /** Custom Code **/
+
+
+        //Convert Fahrenheit Temp to Celsius
         private void ConvertTemp2c() 
         {
-            string strTemp = FahrenheitTextBox.Text;
-            double doubleTemp = Convert.ToDouble(strTemp);
-            doubleTemp = ((doubleTemp - 32) * (5.0 / 9.0));
-            doubleTemp = (Math.Truncate(doubleTemp * 10) / 10);
-            string convertedTemp = Convert.ToString(doubleTemp);
-            this.ConvertedTemp.Text = convertedTemp + "C";
-            this.ConvertedTemp.ForeColor = Color.DarkBlue;
+            // Sets default value of Fahrenheit Text box to 0
+            if (string.IsNullOrEmpty(FahrenheitTextBox.Text))
+            {
+                FahrenheitTextBox.Text = "0";
+            }
+            string strTemp = FahrenheitTextBox.Text; // assigns value in Fahrenheit Text box to string
+            double doubleTemp = Convert.ToDouble(strTemp); // converts the string to a double
+            doubleTemp = ((doubleTemp - 32) * (5.0 / 9.0)); // converts Fahrenheit Temperature to Celsius
+            doubleTemp = (Math.Truncate(doubleTemp * 10) / 10); // removes excess decimal figures from string
+            string convertedTemp = Convert.ToString(doubleTemp); // converts double back to a string
+            this.ConvertedTemp.Text = convertedTemp + "C"; // Outputs converted temp to converted temp box and adds C for Celsius to the String
+            this.ConvertedTemp.ForeColor = Color.DarkBlue; // Changes color to Blue to represent Celsius
         }
+        // Convert Celsius Temp to Fahrenheit
         private void ConvertTemp2f()
         {
-            string strTemp = CelsiusTextBox.Text;
-            double doubleTemp = Convert.ToDouble(strTemp);
-            doubleTemp = ((doubleTemp * (9.0 / 5.0) + 32));
-            doubleTemp = (Math.Truncate(doubleTemp * 10) / 10);
-            string convertedTemp = Convert.ToString(doubleTemp);
-            this.ConvertedTemp.Text = convertedTemp + "F";
-            this.ConvertedTemp.ForeColor = Color.DarkRed;
+            // sets default value of Celsius text box to "0" if no value entered
+            if (string.IsNullOrEmpty(CelsiusTextBox.Text))
+            {
+                CelsiusTextBox.Text = "0";
+            }
+            string strTemp = CelsiusTextBox.Text;  // assigns value in Celsius Text Box to a string
+            double doubleTemp = Convert.ToDouble(strTemp);  // converts the string to a double
+            doubleTemp = ((doubleTemp * (9.0 / 5.0) + 32)); // converts the Celsius temperature to Fahrenheit
+            doubleTemp = (Math.Truncate(doubleTemp * 10) / 10); // Removes excess Decimal figures from string
+            string convertedTemp = Convert.ToString(doubleTemp);  // converts double back to a string
+            this.ConvertedTemp.Text = convertedTemp + "F"; // outputs converted temperature to converted temp box and adds F for Fahrenheit to the string
+            this.ConvertedTemp.ForeColor = Color.DarkRed; // Changes color to Red to represent Fahrenheit
         }
-        /** Generated **/
+        /** Auto Generated **/
         private void label2_Click(object sender, EventArgs e)
         {
 
@@ -50,12 +74,17 @@ namespace f2c
 
         private void F2cButton_Click(object sender, EventArgs e)
         {
-            ConvertTemp2c();
+            ConvertTemp2c();  // calls custom function to convert Fahrenheit to Celsius
         }
 
         private void C2fButton_Click(object sender, EventArgs e)
         {
-            ConvertTemp2f();
+            ConvertTemp2f(); // calls Custom function to convert Celsius to Fahrenheit
+        }
+
+        private void FahrenheitTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
